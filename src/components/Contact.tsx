@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import SectionReveal from "./SectionReveal";
-import { ArrowUpRight, Mail, MapPin } from "lucide-react";
+import { ArrowUpRight, Mail, MapPin, Linkedin, Phone } from "lucide-react";
 
 const Contact = () => (
   <section id="contact" className="py-32 px-6">
@@ -21,7 +21,7 @@ const Contact = () => (
 
       <SectionReveal delay={0.2}>
         <motion.a
-          href="mailto:ilakkiya.murugesan@example.com"
+          href="mailto:ilakkiyamurugesan.m@gmail.com"
           whileHover={{ scale: 1.04 }}
           whileTap={{ scale: 0.98 }}
           className="inline-flex items-center gap-3 gradient-bg text-primary-foreground px-8 py-4 rounded-2xl text-lg font-semibold glow-blue transition-shadow duration-300"
@@ -31,9 +31,34 @@ const Contact = () => (
           <ArrowUpRight className="w-5 h-5" />
         </motion.a>
 
-        <div className="flex items-center justify-center gap-2 mt-8 text-sm text-muted-foreground">
-          <MapPin className="w-4 h-4" />
-          Coimbatore, India
+        <div className="flex flex-wrap items-center justify-center gap-6 mt-10">
+          <a
+            href="mailto:ilakkiyamurugesan.m@gmail.com"
+            className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
+          >
+            <Mail className="w-4 h-4" />
+            ilakkiyamurugesan.m@gmail.com
+          </a>
+          <a
+            href="tel:+918268981563"
+            className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
+          >
+            <Phone className="w-4 h-4" />
+            +91 8268981563
+          </a>
+          <a
+            href="https://www.linkedin.com/in/ilakkiya-m"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
+          >
+            <Linkedin className="w-4 h-4" />
+            LinkedIn
+          </a>
+          <div className="flex items-center gap-2 text-sm text-muted-foreground">
+            <MapPin className="w-4 h-4" />
+            Coimbatore, India
+          </div>
         </div>
       </SectionReveal>
     </div>

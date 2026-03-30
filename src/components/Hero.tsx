@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { Search, ArrowDown } from "lucide-react";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const suggestions = [
   "What's your tech stack?",
@@ -12,10 +13,16 @@ const suggestions = [
 const Hero = () => {
   const [query, setQuery] = useState("");
   const [showSuggestions, setShowSuggestions] = useState(false);
+  const navigate = useNavigate();
+
+  const handleSearch = (q: string) => {
+    if (!q.trim()) return;
+    navigate(`/ask?q=${encodeURIComponent(q.trim())}`);
+  };
 
   const handleSuggestionClick = (s: string) => {
-    setQuery(s);
     setShowSuggestions(false);
+    handleSearch(s);
   };
 
   return (
@@ -73,7 +80,10 @@ const Hero = () => {
           className="relative max-w-lg mx-auto"
         >
           <div className="glass-strong rounded-2xl p-1">
-            <div className="relative flex items-center">
+            <form
+              onSubmit={(e) => { e.preventDefault(); handleSearch(query); }}
+              className="relative flex items-center"
+            >
               <Search className="absolute left-4 w-5 h-5 text-muted-foreground" />
               <input
                 type="text"
@@ -87,14 +97,14 @@ const Hero = () => {
               <span className="hidden sm:flex items-center mr-3 px-2 py-1 text-xs font-mono text-muted-foreground bg-muted rounded-md">
                 ⌘K
               </span>
-            </div>
+            </form>
           </div>
 
           {showSuggestions && (
             <motion.div
               initial={{ opacity: 0, y: -8 }}
               animate={{ opacity: 1, y: 0 }}
-              className="absolute top-full mt-2 w-full glass-strong rounded-xl p-2 text-left"
+              className="absolute top-full mt-2 w-full glass-strong rounded-xl p-2 text-left z-20"
             >
               {suggestions.map((s) => (
                 <button

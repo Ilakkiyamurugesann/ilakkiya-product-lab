@@ -2,6 +2,7 @@ import FloatingNav from "@/components/FloatingNav";
 import Hero from "@/components/Hero";
 import About from "@/components/About";
 import Skills from "@/components/Skills";
+import Experience from "@/components/Experience";
 import Projects from "@/components/Projects";
 import CaseStudies from "@/components/CaseStudies";
 import WorkStyle from "@/components/WorkStyle";
@@ -13,6 +14,7 @@ const Index = () => (
     <Hero />
     <About />
     <Skills />
+    <Experience />
     <Projects />
     <CaseStudies />
     <WorkStyle />
