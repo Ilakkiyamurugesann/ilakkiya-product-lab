@@ -26,7 +26,7 @@ const Hero = () => {
   };
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center hero-gradient dot-grid overflow-hidden">
+    <section id="hero" className="relative min-h-screen flex items-center justify-center hero-gradient dot-grid overflow-hidden">
       {/* Floating orbs */}
       <div className="absolute top-20 left-[15%] w-72 h-72 rounded-full bg-primary/5 blur-3xl animate-float" />
       <div className="absolute bottom-20 right-[10%] w-96 h-96 rounded-full bg-secondary/5 blur-3xl animate-float" style={{ animationDelay: "3s" }} />

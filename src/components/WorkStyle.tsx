@@ -20,7 +20,7 @@ const principles = [
 ];
 
 const WorkStyle = () => (
-  <section className="py-32 px-6">
+  <section id="work-style" className="py-32 px-6">
     <div className="container max-w-5xl mx-auto">
       <SectionReveal>
         <p className="text-sm font-mono text-primary tracking-wider uppercase mb-4">

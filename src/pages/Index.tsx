@@ -1,4 +1,5 @@
 import FloatingNav from "@/components/FloatingNav";
+import FloatingAvatar from "@/components/FloatingAvatar";
 import Hero from "@/components/Hero";
 import About from "@/components/About";
 import Skills from "@/components/Skills";
@@ -11,6 +12,7 @@ import Contact from "@/components/Contact";
 const Index = () => (
   <main className="relative">
     <FloatingNav />
+    <FloatingAvatar />
     <Hero />
     <About />
     <Skills />
