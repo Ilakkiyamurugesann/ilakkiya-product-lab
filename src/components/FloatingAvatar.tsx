@@ -245,37 +245,33 @@ const FloatingAvatar = () => {
         }}
         className="relative"
       >
-        {/* Outer glow ring */}
-        <motion.div
-          className="absolute -inset-2 rounded-full"
-          animate={{
-            opacity: [0.3, 0.6, 0.3],
-            scale: [1, 1.05, 1],
-          }}
-          transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-          style={{
-            background: `radial-gradient(circle, hsl(217 91% 60% / 0.2), hsl(270 60% 55% / 0.1), transparent 70%)`,
-          }}
-        />
-
         {/* Walking shadow */}
         <motion.div
-          className="absolute -bottom-3 left-1/2 -translate-x-1/2 rounded-full bg-foreground/10 blur-sm"
+          className="absolute -bottom-2 left-1/2 -translate-x-1/2 rounded-full bg-foreground/10 blur-md"
           animate={{
-            width: [avatarSize * 0.6, avatarSize * 0.5, avatarSize * 0.6],
-            height: [6, 4, 6],
-            opacity: [0.3, 0.15, 0.3],
+            width: [avatarSize * 0.5, avatarSize * 0.4, avatarSize * 0.5],
+            height: [8, 5, 8],
+            opacity: [0.25, 0.1, 0.25],
           }}
           transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
+        />
+
+        {/* Soft glow behind avatar */}
+        <motion.div
+          className="absolute inset-0 -z-10"
+          animate={{ opacity: [0.4, 0.7, 0.4] }}
+          transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+          style={{
+            filter: "blur(18px)",
+            background: `radial-gradient(circle, hsl(217 91% 60% / 0.15), transparent 70%)`,
+          }}
         />
 
         <img
           src={avatarImg}
           alt="Ilakkiya's Avatar"
-          width={avatarSize}
-          height={avatarSize}
-          className="rounded-full border-2 border-primary/30 shadow-2xl object-cover"
-          style={{ width: avatarSize, height: avatarSize }}
+          className="drop-shadow-2xl"
+          style={{ height: avatarSize * 1.6, width: "auto", objectFit: "contain" }}
         />
       </motion.div>
     </motion.div>
