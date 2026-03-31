@@ -167,14 +167,11 @@ const FloatingAvatar = () => {
           }}
           className="relative"
         >
-          <div className="absolute inset-0 rounded-full glow-blue opacity-60 animate-pulse-glow" />
           <img
             src={avatarImg}
             alt="Ilakkiya's Avatar"
-            width={avatarSize}
-            height={avatarSize}
-            className="rounded-full border-2 border-primary/30 shadow-lg object-cover"
-            style={{ width: avatarSize, height: avatarSize }}
+            className="drop-shadow-lg"
+            style={{ height: avatarSize * 1.4, width: "auto", objectFit: "contain" }}
           />
         </motion.div>
       </motion.div>
