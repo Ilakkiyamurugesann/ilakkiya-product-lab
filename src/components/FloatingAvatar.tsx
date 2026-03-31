@@ -1,4 +1,4 @@
-import { motion, useMotionValue, useSpring, AnimatePresence } from "framer-motion";
+import { motion, useScroll, useTransform, useSpring, AnimatePresence } from "framer-motion";
 import { useEffect, useState, useCallback, useRef } from "react";
 import avatarImg from "@/assets/avatar.png";
 
@@ -13,16 +13,20 @@ const sectionTooltips: Record<string, string> = {
   contact: "Let's connect! 💬",
 };
 
-const sectionEnergy: Record<string, number> = {
-  hero: 1,
-  about: 0.6,
-  skills: 0.9,
-  experience: 0.7,
-  projects: 1.2,
-  "case-studies": 0.8,
-  "work-style": 0.6,
-  contact: 0.5,
+// Avatar path waypoints: defines where the avatar sits at each section
+// x is percentage of viewport width, y offset from section top
+const sectionWaypoints: Record<string, { xPercent: number; side: "left" | "right" }> = {
+  hero: { xPercent: 85, side: "right" },
+  about: { xPercent: 8, side: "left" },
+  skills: { xPercent: 90, side: "right" },
+  experience: { xPercent: 6, side: "left" },
+  projects: { xPercent: 88, side: "right" },
+  "case-studies": { xPercent: 7, side: "left" },
+  "work-style": { xPercent: 90, side: "right" },
+  contact: { xPercent: 50, side: "right" },
 };
+
+const sectionOrder = ["hero", "about", "skills", "experience", "projects", "case-studies", "work-style", "contact"];
 
 const FloatingAvatar = () => {
   const [currentSection, setCurrentSection] = useState("hero");
@@ -30,14 +34,10 @@ const FloatingAvatar = () => {
   const [showTooltip, setShowTooltip] = useState(true);
   const [isHovering, setIsHovering] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
+  const [avatarPos, setAvatarPos] = useState({ x: 85, y: 50 });
+  const [facingLeft, setFacingLeft] = useState(false);
   const tooltipTimer = useRef<ReturnType<typeof setTimeout>>();
-
-  const mouseX = useMotionValue(typeof window !== "undefined" ? window.innerWidth - 80 : 0);
-  const mouseY = useMotionValue(typeof window !== "undefined" ? window.innerHeight / 2 : 0);
-
-  const springConfig = { damping: 25, stiffness: 120, mass: 0.8 };
-  const x = useSpring(mouseX, springConfig);
-  const y = useSpring(mouseY, springConfig);
+  const prevXRef = useRef(85);
 
   useEffect(() => {
     const check = () => setIsMobile(window.innerWidth < 768);
@@ -46,41 +46,79 @@ const FloatingAvatar = () => {
     return () => window.removeEventListener("resize", check);
   }, []);
 
-  // Cursor follow (desktop only)
+  // Scroll-based section detection + avatar positioning
   useEffect(() => {
-    if (isMobile) return;
-    const handle = (e: MouseEvent) => {
-      // Avatar stays on right side, subtly influenced by cursor
-      const targetX = window.innerWidth - 90 + (e.clientX - window.innerWidth / 2) * 0.04;
-      const targetY = e.clientY * 0.3 + window.innerHeight * 0.35;
-      mouseX.set(targetX);
-      mouseY.set(targetY);
-    };
-    window.addEventListener("mousemove", handle);
-    return () => window.removeEventListener("mousemove", handle);
-  }, [isMobile, mouseX, mouseY]);
-
-  // Section detection on scroll
-  useEffect(() => {
-    const sections = ["hero", "about", "skills", "experience", "projects", "case-studies", "work-style", "contact"];
     const onScroll = () => {
-      const scrollY = window.scrollY + window.innerHeight / 3;
-      for (let i = sections.length - 1; i >= 0; i--) {
-        const el = document.getElementById(sections[i]);
-        if (el && el.offsetTop <= scrollY) {
-          if (sections[i] !== currentSection) {
-            setCurrentSection(sections[i]);
-            setShowTooltip(true);
-            clearTimeout(tooltipTimer.current);
-            tooltipTimer.current = setTimeout(() => setShowTooltip(false), 3000);
-          }
+      const scrollY = window.scrollY;
+      const vh = window.innerHeight;
+      const scrollCenter = scrollY + vh * 0.5;
+
+      // Find current and next section for interpolation
+      let currentIdx = 0;
+      const sectionEls: { id: string; top: number; bottom: number }[] = [];
+
+      for (const id of sectionOrder) {
+        const el = document.getElementById(id);
+        if (el) {
+          sectionEls.push({
+            id,
+            top: el.offsetTop,
+            bottom: el.offsetTop + el.offsetHeight,
+          });
+        }
+      }
+
+      // Find which section we're in
+      for (let i = sectionEls.length - 1; i >= 0; i--) {
+        if (scrollCenter >= sectionEls[i].top) {
+          currentIdx = i;
           break;
         }
       }
+
+      const curr = sectionEls[currentIdx];
+      const next = sectionEls[currentIdx + 1];
+
+      const currWaypoint = sectionWaypoints[curr.id] || { xPercent: 85 };
+      let targetX = currWaypoint.xPercent;
+
+      // Interpolate X between current and next section
+      if (next) {
+        const nextWaypoint = sectionWaypoints[next.id] || { xPercent: 85 };
+        const sectionProgress = Math.max(0, Math.min(1,
+          (scrollCenter - curr.top) / (next.top - curr.top)
+        ));
+        // Ease the transition — avatar moves mostly in the last 30% before next section
+        const eased = sectionProgress < 0.6 ? 0 : ((sectionProgress - 0.6) / 0.4) ** 2;
+        targetX = currWaypoint.xPercent + (nextWaypoint.xPercent - currWaypoint.xPercent) * eased;
+      }
+
+      // Calculate Y position — avatar stays vertically centered in viewport
+      // but bobs slightly based on scroll
+      const bobAmount = Math.sin(scrollY * 0.005) * 8;
+      const targetY = vh * 0.45 + bobAmount;
+
+      // Determine facing direction
+      if (Math.abs(targetX - prevXRef.current) > 0.5) {
+        setFacingLeft(targetX < prevXRef.current);
+      }
+      prevXRef.current = targetX;
+
+      setAvatarPos({ x: targetX, y: targetY });
+
+      // Update current section for tooltip
+      if (curr.id !== currentSection) {
+        setCurrentSection(curr.id);
+        setShowTooltip(true);
+        clearTimeout(tooltipTimer.current);
+        tooltipTimer.current = setTimeout(() => setShowTooltip(false), 2500);
+      }
     };
+
     window.addEventListener("scroll", onScroll, { passive: true });
-    // Initial tooltip hide
+    onScroll(); // initial position
     tooltipTimer.current = setTimeout(() => setShowTooltip(false), 4000);
+
     return () => {
       window.removeEventListener("scroll", onScroll);
       clearTimeout(tooltipTimer.current);
@@ -92,12 +130,10 @@ const FloatingAvatar = () => {
     setTimeout(() => setIsClicked(false), 600);
   }, []);
 
-  const energy = sectionEnergy[currentSection] || 1;
   const tooltip = sectionTooltips[currentSection] || "";
-  const avatarSize = isMobile ? 56 : 72;
+  const avatarSize = isMobile ? 52 : 68;
 
   if (isMobile) {
-    // Simplified fixed avatar for mobile
     return (
       <motion.div
         className="fixed bottom-6 right-6 z-50 cursor-pointer"
@@ -120,20 +156,18 @@ const FloatingAvatar = () => {
 
         <motion.div
           animate={{
-            y: [0, -6 * energy, 0],
+            y: [0, -5, 0],
             rotate: isClicked ? [0, -15, 15, -8, 0] : 0,
             scale: isClicked ? [1, 1.3, 0.9, 1.05, 1] : isHovering ? 1.1 : 1,
           }}
           transition={{
-            y: { duration: 3 / energy, repeat: Infinity, ease: "easeInOut" },
+            y: { duration: 3, repeat: Infinity, ease: "easeInOut" },
             rotate: { duration: 0.6 },
             scale: { duration: 0.4 },
           }}
           className="relative"
         >
-          {/* Glow ring */}
           <div className="absolute inset-0 rounded-full glow-blue opacity-60 animate-pulse-glow" />
-
           <img
             src={avatarImg}
             alt="Ilakkiya's Avatar"
@@ -147,11 +181,24 @@ const FloatingAvatar = () => {
     );
   }
 
-  // Desktop: follows cursor subtly on right side
+  // Desktop: avatar walks/floats across the page
   return (
     <motion.div
-      style={{ x, y, translateX: "-50%", translateY: "-50%" }}
       className="fixed z-50 pointer-events-auto cursor-pointer select-none"
+      animate={{
+        left: `${avatarPos.x}%`,
+        top: avatarPos.y,
+      }}
+      transition={{
+        type: "spring",
+        damping: 30,
+        stiffness: 80,
+        mass: 1.2,
+      }}
+      style={{
+        translateX: "-50%",
+        translateY: "-50%",
+      }}
       onClick={handleClick}
       onHoverStart={() => { setIsHovering(true); setShowTooltip(true); }}
       onHoverEnd={() => { setIsHovering(false); }}
@@ -172,28 +219,32 @@ const FloatingAvatar = () => {
         )}
       </AnimatePresence>
 
-      {/* Trail / glow effect */}
+      {/* Trail glow */}
       <motion.div
         className="absolute inset-0 rounded-full"
         animate={{
           boxShadow: isHovering
-            ? `0 0 30px hsl(217 91% 60% / 0.5), 0 0 60px hsl(270 60% 55% / 0.3), 0 0 90px hsl(185 100% 55% / 0.15)`
+            ? `0 0 30px hsl(217 91% 60% / 0.5), 0 0 60px hsl(270 60% 55% / 0.3)`
             : `0 0 15px hsl(217 91% 60% / 0.25), 0 0 40px hsl(270 60% 55% / 0.1)`,
         }}
         transition={{ duration: 0.4 }}
       />
 
-      {/* Avatar */}
+      {/* Avatar with walking bob + flip direction */}
       <motion.div
         animate={{
-          y: [0, -8 * energy, 0],
-          rotate: isClicked ? [0, -20, 20, -10, 5, 0] : 0,
+          y: [0, -6, 0, -3, 0],
+          rotate: isClicked ? [0, -20, 20, -10, 5, 0] : [0, -1, 0, 1, 0],
           scale: isClicked ? [1, 1.35, 0.85, 1.1, 1] : isHovering ? 1.15 : 1,
+          scaleX: facingLeft ? -1 : 1,
         }}
         transition={{
-          y: { duration: 3.5 / energy, repeat: Infinity, ease: "easeInOut" },
-          rotate: { duration: 0.6 },
+          y: { duration: 1.8, repeat: Infinity, ease: "easeInOut" },
+          rotate: isClicked
+            ? { duration: 0.6 }
+            : { duration: 4, repeat: Infinity, ease: "easeInOut" },
           scale: { type: "spring", damping: 12, stiffness: 200 },
+          scaleX: { duration: 0.3 },
         }}
         className="relative"
       >
@@ -201,7 +252,7 @@ const FloatingAvatar = () => {
         <motion.div
           className="absolute -inset-2 rounded-full"
           animate={{
-            opacity: [0.3, 0.6 * energy, 0.3],
+            opacity: [0.3, 0.6, 0.3],
             scale: [1, 1.05, 1],
           }}
           transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
@@ -210,29 +261,16 @@ const FloatingAvatar = () => {
           }}
         />
 
-        {/* Particle dots */}
-        {[...Array(4)].map((_, i) => (
-          <motion.div
-            key={i}
-            className="absolute w-1.5 h-1.5 rounded-full bg-primary/40"
-            animate={{
-              x: [0, Math.cos((i * Math.PI) / 2) * 30, 0],
-              y: [0, Math.sin((i * Math.PI) / 2) * 30, 0],
-              opacity: [0, 0.7, 0],
-              scale: [0, 1, 0],
-            }}
-            transition={{
-              duration: 2.5,
-              repeat: Infinity,
-              delay: i * 0.6,
-              ease: "easeOut",
-            }}
-            style={{
-              top: "50%",
-              left: "50%",
-            }}
-          />
-        ))}
+        {/* Walking shadow */}
+        <motion.div
+          className="absolute -bottom-3 left-1/2 -translate-x-1/2 rounded-full bg-foreground/10 blur-sm"
+          animate={{
+            width: [avatarSize * 0.6, avatarSize * 0.5, avatarSize * 0.6],
+            height: [6, 4, 6],
+            opacity: [0.3, 0.15, 0.3],
+          }}
+          transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
+        />
 
         <img
           src={avatarImg}
