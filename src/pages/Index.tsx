@@ -1,5 +1,5 @@
 import FloatingNav from "@/components/FloatingNav";
-import FloatingAvatar from "@/components/FloatingAvatar";
+
 import Hero from "@/components/Hero";
 import About from "@/components/About";
 import Skills from "@/components/Skills";
