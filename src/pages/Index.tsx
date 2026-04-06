@@ -12,7 +12,7 @@ import Contact from "@/components/Contact";
 const Index = () => (
   <main className="relative">
     <FloatingNav />
-    <FloatingAvatar />
+    
     <Hero />
     <About />
     <Skills />
