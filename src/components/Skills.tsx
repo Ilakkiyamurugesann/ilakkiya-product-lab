@@ -3,24 +3,28 @@ import SectionReveal from "./SectionReveal";
 
 const categories = [
   {
-    label: "Frontend Core",
-    skills: ["React", "Redux", "Hooks", "Context API", "TypeScript", "JavaScript ES6+"],
+    label: "Frontend & Architecture",
+    skills: ["React.js (Advanced)", "TypeScript", "JavaScript ES6+", "HTML5", "CSS3/SCSS", "Scalable Component Architecture", "Performance Optimization", "Modular UI Systems"],
   },
   {
-    label: "Styling & UI",
-    skills: ["Tailwind CSS", "SCSS", "Bootstrap", "CSS3", "HTML5", "Responsive Design"],
+    label: "Data & Product UI",
+    skills: ["ECharts (Advanced)", "Dashboard Engineering", "Drilldowns & Filters", "Real-time Insights", "Business Metrics → UI", "Analytics & Governance Platforms"],
   },
   {
-    label: "Data & Visualization",
-    skills: ["ECharts", "Chart.js", "Three.js", "D3 Concepts", "Data Mapping"],
+    label: "Applied AI",
+    skills: ["AI-Assisted Workflows", "MCP Integration", "Prompt Engineering", "Context-Aware UI", "Predictive Dashboards", "Automation Triggers"],
   },
   {
-    label: "Tools & Workflow",
-    skills: ["Git", "GitLab", "Figma", "REST APIs", "Node.js", "SDLC", "Agile"],
+    label: "State & Backend",
+    skills: ["Redux", "Custom Hooks", "Context API", "Node.js (Basics)", "REST API Integration", "Data Pipeline Design"],
   },
   {
-    label: "Emerging",
-    skills: ["AI Prompt Engineering", "Performance Profiling", "Micro-Frontends", "Design Systems"],
+    label: "Tools & Practices",
+    skills: ["Git", "GitLab", "Figma", "Docker (Basics)", "Agile/Scrum", "CI/CD", "Debugging Complex Systems"],
+  },
+  {
+    label: "Leadership",
+    skills: ["Team Management", "Mentorship", "Code Quality Standards", "Feature Ownership", "Cross-team Collaboration", "Sprint Planning"],
   },
 ];
 

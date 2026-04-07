@@ -8,8 +8,10 @@ const timeline = [
     period: "Mar 2025 – Present",
     points: [
       "Leading frontend architecture for scalable product features",
-      "Enforcing clean code standards across team",
-      "Mentoring developers & driving React performance optimization",
+      "Enforcing clean-code standards and driving high-quality development",
+      "Mentoring developers and optimizing React performance",
+      "Managing team responsibilities alongside hands-on development",
+      "Driving greenfield initiatives with architecture planning and UI design",
     ],
   },
   {
@@ -17,8 +19,10 @@ const timeline = [
     role: "Associate Engineer – Product Development",
     period: "Jan 2025 – Mar 2025",
     points: [
-      "Improved sprint predictability & optimized rendering performance",
-      "Mentored junior developers on best practices",
+      "Identified workflow inefficiencies and improved sprint predictability",
+      "Optimized React components for rendering performance",
+      "Mentored junior developers in reusable component design",
+      "Integrated AI concepts into applications for smarter workflows",
     ],
   },
   {
@@ -26,18 +30,20 @@ const timeline = [
     role: "Associate – Product Development",
     period: "Aug 2024 – Dec 2024",
     points: [
-      "Built interactive dashboards using ECharts",
+      "Built interactive ECharts dashboards and visual analytics features",
       "Developed reusable utilities and API service layers",
-      "Improved data transformation pipelines",
+      "Improved data-formatting logic for visualization pipelines",
+      "Implemented drilldowns and dynamic data exploration features",
     ],
   },
   {
     color: "bg-yellow-500",
-    role: "Trainee – Frontend Product Development",
+    role: "Trainee – Product Development (Frontend)",
     period: "Aug 2023 – Aug 2024",
     points: [
-      "Built reusable React modules & integrated APIs",
-      "Delivered features in agile sprints",
+      "Built reusable React modules with API integration",
+      "Developed data pipelines for dashboards and charts",
+      "Collaborated in agile sprints, delivering features with high reliability",
     ],
   },
 ];
@@ -55,14 +61,12 @@ const Experience = () => (
       </SectionReveal>
 
       <div className="relative">
-        {/* Timeline line */}
         <div className="absolute left-[18px] top-2 bottom-2 w-px bg-border" />
 
         <div className="space-y-10">
           {timeline.map((item, i) => (
             <SectionReveal key={item.role} delay={i * 0.1}>
               <div className="relative flex gap-6">
-                {/* Dot */}
                 <div className="relative z-10 flex-shrink-0">
                   <motion.div
                     initial={{ scale: 0 }}
@@ -75,7 +79,6 @@ const Experience = () => (
                   </motion.div>
                 </div>
 
-                {/* Card */}
                 <div className="glass rounded-2xl p-6 flex-1 hover:glow-blue transition-all duration-500">
                   <div className="flex flex-wrap items-center justify-between gap-2 mb-3">
                     <h3 className="text-base font-semibold text-foreground">{item.role}</h3>
@@ -98,7 +101,6 @@ const Experience = () => (
         </div>
       </div>
 
-      {/* Education */}
       <SectionReveal delay={0.4}>
         <div className="mt-16 glass rounded-2xl p-8 text-center">
           <p className="text-xs font-mono text-muted-foreground uppercase tracking-widest mb-2">Education</p>

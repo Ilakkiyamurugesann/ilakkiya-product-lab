@@ -5,9 +5,10 @@ import { useNavigate } from "react-router-dom";
 
 const suggestions = [
   "What's your tech stack?",
-  "Tell me about your dashboard work",
-  "How do you approach performance?",
+  "Tell me about your AI integration work",
+  "How do you approach dashboard engineering?",
   "What's your leadership style?",
+  "Tell me about your greenfield experience",
 ];
 
 const Hero = () => {
@@ -27,13 +28,11 @@ const Hero = () => {
 
   return (
     <section id="hero" className="relative min-h-screen flex items-center justify-center hero-gradient dot-grid overflow-hidden">
-      {/* Floating orbs */}
       <div className="absolute top-20 left-[15%] w-72 h-72 rounded-full bg-primary/5 blur-3xl animate-float" />
       <div className="absolute bottom-20 right-[10%] w-96 h-96 rounded-full bg-secondary/5 blur-3xl animate-float" style={{ animationDelay: "3s" }} />
       <div className="absolute top-1/2 left-[60%] w-48 h-48 rounded-full bg-neon-cyan/5 blur-3xl animate-pulse-glow" />
 
       <div className="container relative z-10 max-w-4xl mx-auto px-6 text-center">
-        {/* Status badge */}
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -42,11 +41,10 @@ const Hero = () => {
         >
           <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
           <span className="text-sm font-medium text-muted-foreground">
-            Technical Lead · Open to opportunities
+            Frontend Technical Lead · Open to opportunities
           </span>
         </motion.div>
 
-        {/* Name */}
         <motion.h1
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -58,21 +56,19 @@ const Hero = () => {
           <span className="gradient-text">Murugesan</span>
         </motion.h1>
 
-        {/* Tagline */}
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
           className="text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto mb-12 text-balance"
         >
-          Building Scalable Frontend Systems for Data-Driven Products.
+          Frontend Engineer building scalable UI systems, AI-integrated workflows &amp; data-driven dashboards.
           <br />
           <span className="text-foreground font-medium">
-            React · Data Visualization · Product Engineering
+            React · AI Integration · Data Visualization · Product Engineering
           </span>
         </motion.p>
 
-        {/* Command bar */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -119,7 +115,6 @@ const Hero = () => {
           )}
         </motion.div>
 
-        {/* Scroll indicator */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
