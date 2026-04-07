@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import SectionReveal from "./SectionReveal";
-import { TrendingUp, GitBranch, BarChart3, Layers } from "lucide-react";
+import { TrendingUp, GitBranch, BarChart3, Layers, Brain, Monitor } from "lucide-react";
 
 const projects = [
   {
@@ -10,6 +10,22 @@ const projects = [
     approach: "Built dynamic ECharts dashboards with environment filters (PROD/DEV/QA), financial year logic, and drill-down capabilities.",
     impact: "Reduced reporting time by 60%. Enabled data-driven budget decisions across teams.",
     tags: ["React", "ECharts", "REST API", "TypeScript"],
+  },
+  {
+    icon: Monitor,
+    title: "Monitoring & Governance Platform",
+    problem: "Enterprise teams lacked a unified platform for operational monitoring and governance analytics.",
+    approach: "Built from scratch — defined architecture, data flows, and user interaction models. Designed decision-driven dashboards with real-time insights.",
+    impact: "Delivered a production-ready platform adopted across multiple teams for operational oversight.",
+    tags: ["React", "ECharts", "Greenfield", "Enterprise"],
+  },
+  {
+    icon: Brain,
+    title: "AI-Integrated Workflow System",
+    problem: "Manual processes in internal tools required heavy human intervention and slowed decisions.",
+    approach: "Integrated context-aware UI systems using MCP concepts, prompt-driven workflows, and intelligent automation triggers.",
+    impact: "Enabled smarter, faster decision-making with predictive insights and reduced manual overhead.",
+    tags: ["React", "AI/MCP", "Context-Aware UI", "Automation"],
   },
   {
     icon: GitBranch,
@@ -25,7 +41,7 @@ const projects = [
     problem: "Inconsistent UI patterns across products slowed development and created UX debt.",
     approach: "Architected a scalable component library with design tokens, composable APIs, and comprehensive documentation.",
     impact: "40% faster feature development. Unified visual language across 4 products.",
-    tags: ["React", "TypeScript", "Storybook", "Design System"],
+    tags: ["React", "TypeScript", "Design System"],
   },
   {
     icon: TrendingUp,

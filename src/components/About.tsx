@@ -1,26 +1,36 @@
 import SectionReveal from "./SectionReveal";
-import { Lightbulb, BarChart3, Layers, Zap } from "lucide-react";
+import { Lightbulb, BarChart3, Layers, Zap, Brain, Users } from "lucide-react";
 
 const pillars = [
   {
     icon: Lightbulb,
     title: "Product Thinker",
-    description: "I don't just write code — I understand the 'why' behind every feature and build for user impact.",
+    description: "I own features end-to-end — from problem definition to delivery. Every feature is validated against real business impact.",
   },
   {
     icon: BarChart3,
     title: "Data Translator",
-    description: "Turning complex datasets and business logic into intuitive, interactive visual experiences.",
+    description: "Turning complex datasets into intuitive dashboards with drilldowns, filters, and real-time insights that drive decisions.",
+  },
+  {
+    icon: Brain,
+    title: "AI-Integrated Builder",
+    description: "Building AI-assisted workflows, context-aware UI systems, and intelligent dashboards with predictive insights.",
   },
   {
     icon: Layers,
     title: "Architecture First",
-    description: "Scalable component systems, reusable patterns, and maintainable codebases are my foundation.",
+    description: "Scalable component systems, modular UI design, and maintainable codebases built for the next developer.",
   },
   {
     icon: Zap,
     title: "Performance Obsessed",
-    description: "Every millisecond matters. I optimize renders, bundles, and user-perceived performance.",
+    description: "Optimizing renders, bundles, and user-perceived performance. Every millisecond matters in data-heavy UIs.",
+  },
+  {
+    icon: Users,
+    title: "Team Leader",
+    description: "Managing teams, mentoring developers, driving collaboration, and taking accountability for deliverables and timelines.",
   },
 ];
 
@@ -37,13 +47,14 @@ const About = () => (
           <span className="gradient-text">complex data feel simple.</span>
         </h2>
         <p className="text-lg text-muted-foreground max-w-2xl mb-16 text-balance">
-          Frontend developer with a product engineer mindset based in Coimbatore, India.
-          I specialize in building data-heavy UIs, dashboards, and scalable component systems
-          using React, ECharts, and modern frontend architecture.
+          Frontend Engineer with strong expertise in React.js, data visualization, and scalable UI architecture,
+          combined with hands-on experience in AI-integrated systems and product-driven development.
+          Experienced in leading teams, driving greenfield initiatives, and translating complex business problems
+          into intuitive dashboards, intelligent workflows, and actionable insights.
         </p>
       </SectionReveal>
 
-      <div className="grid sm:grid-cols-2 gap-6">
+      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {pillars.map((pillar, i) => (
           <SectionReveal key={pillar.title} delay={i * 0.1}>
             <div className="glass rounded-2xl p-8 group hover:glow-blue transition-all duration-500 h-full">

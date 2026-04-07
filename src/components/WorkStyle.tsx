@@ -1,11 +1,11 @@
 import SectionReveal from "./SectionReveal";
-import { Target, Code2, Users } from "lucide-react";
+import { Target, Code2, Users, Brain, Rocket } from "lucide-react";
 
 const principles = [
   {
     icon: Target,
     title: "Product-First Thinking",
-    description: "Every line of code serves a user outcome. I start with the problem, not the technology. Features are validated against real impact metrics.",
+    description: "Every line of code serves a user outcome. I break down ambiguous problems into structured solutions, prioritizing based on business impact.",
   },
   {
     icon: Code2,
@@ -13,9 +13,19 @@ const principles = [
     description: "Separation of concerns, composable patterns, and documented APIs. My code is built to scale and designed for the next developer.",
   },
   {
+    icon: Brain,
+    title: "AI-Powered Development",
+    description: "Leveraging AI for smarter workflows — from prompt-driven automation to context-aware systems that enhance decision-making.",
+  },
+  {
     icon: Users,
-    title: "Collaborative Engineering",
+    title: "Collaborative Leadership",
     description: "I lead through shared context — clear PRs, knowledge transfer sessions, and mentoring. Great products are built by aligned teams.",
+  },
+  {
+    icon: Rocket,
+    title: "IC + Lead Versatility",
+    description: "I operate as both an individual contributor delivering high-quality code and a tech lead driving team strategy and execution.",
   },
 ];
 

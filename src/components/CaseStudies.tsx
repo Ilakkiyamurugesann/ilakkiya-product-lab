@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import SectionReveal from "./SectionReveal";
-import { Zap, LayoutDashboard, Settings } from "lucide-react";
+import { Zap, LayoutDashboard, Brain, Layers } from "lucide-react";
 
 const studies = [
   {
@@ -22,13 +22,22 @@ const studies = [
     gradient: "from-secondary to-neon-purple",
   },
   {
-    icon: Settings,
+    icon: Brain,
     number: "03",
-    title: "SDLC Workflow Improvement",
-    challenge: "Sprint predictability was low, and bug leakage between stages was causing production issues.",
-    solution: "Built engineering metrics tracking (PR quality, review time, bug density). Created visibility dashboards for leadership.",
-    result: "Improved sprint predictability by 25%. Reduced production bugs by 35% through early-stage detection.",
+    title: "AI-Driven Workflow Enhancement",
+    challenge: "Manual processes in internal tools slowed decision-making and required heavy human intervention.",
+    solution: "Integrated AI concepts using MCP-based understanding, context-aware UI systems, and prompt-driven workflows for intelligent automation.",
+    result: "Enabled smarter workflows with predictive insights and automation triggers, reducing manual overhead significantly.",
     gradient: "from-neon-cyan to-primary",
+  },
+  {
+    icon: Layers,
+    number: "04",
+    title: "Greenfield Product Development",
+    challenge: "Building a complex monitoring and governance platform from scratch with no existing codebase or design system.",
+    solution: "Defined architecture, data flow patterns, and user interaction models. Built scalable component systems with comprehensive design tokens.",
+    result: "Delivered a production-ready platform adopted across teams. Established reusable patterns that accelerated future development.",
+    gradient: "from-primary to-secondary",
   },
 ];
 
