@@ -15,7 +15,7 @@ const projects = [
     icon: Monitor,
     title: "Monitoring & Governance Platform",
     problem: "Enterprise teams lacked a unified platform for operational monitoring and governance analytics.",
-    approach: "Built from scratch — defined architecture, data flows, and user interaction models. Designed decision-driven dashboards with real-time insights.",
+    approach: "Built from scratch, defining architecture, data flows, and user interaction models. Designed decision-driven dashboards with real-time insights.",
     impact: "Delivered a production-ready platform adopted across multiple teams for operational oversight.",
     tags: ["React", "ECharts", "Greenfield", "Enterprise"],
   },

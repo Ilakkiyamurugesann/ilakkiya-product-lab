@@ -4,7 +4,7 @@ import SectionReveal from "./SectionReveal";
 const timeline = [
   {
     color: "bg-purple-500",
-    role: "Technical Lead – Product Development",
+    role: "Technical Lead, Product Development",
     period: "Mar 2025 – Present",
     points: [
       "Leading frontend architecture for scalable product features",
@@ -16,7 +16,7 @@ const timeline = [
   },
   {
     color: "bg-blue-500",
-    role: "Associate Engineer – Product Development",
+    role: "Associate Engineer, Product Development",
     period: "Jan 2025 – Mar 2025",
     points: [
       "Identified workflow inefficiencies and improved sprint predictability",
@@ -27,7 +27,7 @@ const timeline = [
   },
   {
     color: "bg-green-500",
-    role: "Associate – Product Development",
+    role: "Associate, Product Development",
     period: "Aug 2024 – Dec 2024",
     points: [
       "Built interactive ECharts dashboards and visual analytics features",
@@ -38,7 +38,7 @@ const timeline = [
   },
   {
     color: "bg-yellow-500",
-    role: "Trainee – Product Development (Frontend)",
+    role: "Trainee, Product Development (Frontend)",
     period: "Aug 2023 – Aug 2024",
     points: [
       "Built reusable React modules with API integration",

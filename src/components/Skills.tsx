@@ -7,12 +7,16 @@ const categories = [
     skills: ["React.js (Advanced)", "TypeScript", "JavaScript ES6+", "HTML5", "CSS3/SCSS", "Scalable Component Architecture", "Performance Optimization", "Modular UI Systems"],
   },
   {
+    label: "Product & System Design",
+    skills: ["Product Thinking", "System Design", "Scalable Architecture", "Real-time Data Systems", "Feature Ownership", "Enterprise Use Cases"],
+  },
+  {
     label: "Data & Product UI",
     skills: ["ECharts (Advanced)", "Dashboard Engineering", "Drilldowns & Filters", "Real-time Insights", "Business Metrics → UI", "Analytics & Governance Platforms"],
   },
   {
     label: "Applied AI",
-    skills: ["AI-Assisted Workflows", "MCP Integration", "Prompt Engineering", "Context-Aware UI", "Predictive Dashboards", "Automation Triggers"],
+    skills: ["AI-Integrated Workflows", "MCP Integration", "Prompt Engineering", "Context-Aware Applications", "Predictive Dashboards", "Automation Triggers"],
   },
   {
     label: "State & Backend",

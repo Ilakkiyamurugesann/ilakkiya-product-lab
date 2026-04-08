@@ -1,14 +1,14 @@
 import { motion } from "framer-motion";
-import { Search, ArrowDown } from "lucide-react";
+import { Search, ArrowDown, Sparkles } from "lucide-react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const suggestions = [
-  "What's your tech stack?",
-  "Tell me about your AI integration work",
-  "How do you approach dashboard engineering?",
-  "What's your leadership style?",
-  "Tell me about your greenfield experience",
+  "What are his strengths?",
+  "Explain his project experience",
+  "What makes him different?",
+  "Tell me about his AI integration work",
+  "What's his leadership style?",
 ];
 
 const Hero = () => {
@@ -41,7 +41,7 @@ const Hero = () => {
         >
           <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
           <span className="text-sm font-medium text-muted-foreground">
-            Frontend Technical Lead · Open to opportunities
+            Product Engineer · AI-Integrated Systems · Open to opportunities
           </span>
         </motion.div>
 
@@ -62,19 +62,25 @@ const Hero = () => {
           transition={{ duration: 0.8, delay: 0.4 }}
           className="text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto mb-12 text-balance"
         >
-          Frontend Engineer building scalable UI systems, AI-integrated workflows &amp; data-driven dashboards.
+          Product Engineer building scalable systems, AI-integrated workflows &amp; data-driven platforms.
           <br />
           <span className="text-foreground font-medium">
-            React · AI Integration · Data Visualization · Product Engineering
+            React · TypeScript · AI Integration · Data Visualization · Product Engineering
           </span>
         </motion.p>
 
+        {/* AI Search Bar */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.6 }}
           className="relative max-w-lg mx-auto"
         >
+          <div className="flex items-center justify-center gap-2 mb-3">
+            <Sparkles className="w-4 h-4 text-primary" />
+            <span className="text-sm font-semibold text-foreground">Ask AI about me</span>
+          </div>
+
           <div className="glass-strong rounded-2xl p-1">
             <form
               onSubmit={(e) => { e.preventDefault(); handleSearch(query); }}
@@ -95,6 +101,10 @@ const Hero = () => {
               </span>
             </form>
           </div>
+
+          <p className="text-xs text-muted-foreground mt-2">
+            Ask about my skills, experience, projects, or strengths
+          </p>
 
           {showSuggestions && (
             <motion.div
