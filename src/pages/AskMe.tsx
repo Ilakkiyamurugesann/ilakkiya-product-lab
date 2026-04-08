@@ -9,12 +9,12 @@ type Msg = { role: "user" | "assistant"; content: string };
 const CHAT_URL = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/chat`;
 
 const suggestions = [
-  "What's your tech stack?",
-  "Tell me about your dashboard work",
-  "How do you approach performance?",
-  "What's your leadership style?",
-  "What makes you different?",
-  "Tell me about your experience timeline",
+  "What are his strengths?",
+  "Explain his project experience",
+  "What makes him different?",
+  "Tell me about his AI integration work",
+  "What's his leadership style?",
+  "What's his tech stack?",
 ];
 
 async function streamChat({
@@ -38,7 +38,7 @@ async function streamChat({
   });
 
   if (!resp.ok || !resp.body) {
-    if (resp.status === 429) { onError("Rate limited — please wait a moment."); return; }
+    if (resp.status === 429) { onError("Rate limited, please wait a moment."); return; }
     if (resp.status === 402) { onError("AI credits exhausted."); return; }
     onError("Something went wrong. Please try again.");
     return;
@@ -130,7 +130,6 @@ const AskMe = () => {
 
   return (
     <div className="min-h-screen bg-background hero-gradient dot-grid">
-      {/* Floating orbs */}
       <div className="fixed top-20 left-[10%] w-72 h-72 rounded-full bg-primary/5 blur-3xl animate-float pointer-events-none" />
       <div className="fixed bottom-20 right-[10%] w-96 h-96 rounded-full bg-secondary/5 blur-3xl animate-float pointer-events-none" style={{ animationDelay: "3s" }} />
 
@@ -148,8 +147,8 @@ const AskMe = () => {
               <Sparkles className="w-4 h-4 text-primary-foreground" />
             </div>
             <div>
-              <h1 className="text-sm font-semibold text-foreground">Ask Ilakkiya's Portfolio AI</h1>
-              <p className="text-xs text-muted-foreground">Powered by AI · Knows everything about me</p>
+              <h1 className="text-sm font-semibold text-foreground">Ask AI about Ilakkiya</h1>
+              <p className="text-xs text-muted-foreground">AI-powered portfolio assistant</p>
             </div>
           </div>
         </div>
@@ -167,10 +166,10 @@ const AskMe = () => {
               <Sparkles className="w-8 h-8 text-primary-foreground" />
             </div>
             <h2 className="text-2xl sm:text-3xl font-bold text-foreground mb-2">
-              Ask me <span className="gradient-text">anything</span>
+              Ask AI <span className="gradient-text">about me</span>
             </h2>
             <p className="text-muted-foreground mb-10 max-w-md">
-              I'm an AI that knows everything about Ilakkiya's skills, experience, and projects. Ask away!
+              Ask about my skills, experience, projects, or strengths. I'll give you a confident, detailed answer.
             </p>
             <div className="flex flex-wrap justify-center gap-2 max-w-lg">
               {suggestions.map((s) => (

@@ -15,12 +15,12 @@ const principles = [
   {
     icon: Brain,
     title: "AI-Powered Development",
-    description: "Leveraging AI for smarter workflows — from prompt-driven automation to context-aware systems that enhance decision-making.",
+    description: "Leveraging AI for smarter workflows, from prompt-driven automation to context-aware systems that enhance decision-making.",
   },
   {
     icon: Users,
     title: "Collaborative Leadership",
-    description: "I lead through shared context — clear PRs, knowledge transfer sessions, and mentoring. Great products are built by aligned teams.",
+    description: "I lead through shared context, clear PRs, knowledge transfer sessions, and mentoring. Great products are built by aligned teams.",
   },
   {
     icon: Rocket,

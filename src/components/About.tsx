@@ -5,7 +5,7 @@ const pillars = [
   {
     icon: Lightbulb,
     title: "Product Thinker",
-    description: "I own features end-to-end — from problem definition to delivery. Every feature is validated against real business impact.",
+    description: "I own features end-to-end, from problem definition to delivery. Every feature is validated against real business impact.",
   },
   {
     icon: BarChart3,
@@ -42,12 +42,12 @@ const About = () => (
           // about me
         </p>
         <h2 className="text-3xl sm:text-5xl font-bold text-foreground mb-6 text-balance">
-          I build interfaces that make
+          I build systems that make
           <br />
           <span className="gradient-text">complex data feel simple.</span>
         </h2>
         <p className="text-lg text-muted-foreground max-w-2xl mb-16 text-balance">
-          Frontend Engineer with strong expertise in React.js, data visualization, and scalable UI architecture,
+          Product Engineer with strong expertise in React.js, TypeScript, data visualization, and scalable UI architecture,
           combined with hands-on experience in AI-integrated systems and product-driven development.
           Experienced in leading teams, driving greenfield initiatives, and translating complex business problems
           into intuitive dashboards, intelligent workflows, and actionable insights.
