@@ -96,10 +96,21 @@ Product Engineer with strong expertise in React.js, TypeScript, data visualizati
 - Deep experience in data-heavy and intelligent enterprise applications
 
 ## Key Projects
-- Budget vs Actual dashboards with environment filters, financial year logic, dynamic ECharts
-- Monitoring & Governance Platform (greenfield), architecture, data flows, decision-driven dashboards
-- AI-Integrated Workflow System, MCP concepts, context-aware UI, automation triggers
-- Hierarchical tree visualizations, Reusable component library (4 products), Engineering metrics dashboards
+1. **Data Analytics Dashboard System**: Interactive dashboards with dynamic filtering, time-based analysis, and reusable visualization components. Enabled better decision-making with improved data clarity and scalable UI architecture.
+
+2. **Monitoring & Governance Platform**: Centralized system for workflow monitoring and compliance. Built modular frontend components with real-time updates and data-driven views. Improved operational efficiency.
+
+3. **AI-Assisted Workflow System**: Intelligent automation solutions integrating AI concepts into UI workflows, improving decision flows and interaction patterns. Reduced manual effort and improved efficiency.
+
+4. **Hierarchical Data Visualization**: Expandable and interactive tree-based visualizations for complex organizational data. Improved usability and understanding of complex hierarchies.
+
+5. **Reusable Component System**: Scalable UI components and shared logic systems focusing on consistency and maintainability. Accelerated development across multiple products.
+
+6. **Engineering Metrics & Insights Dashboard**: Dashboards visualizing workflow efficiency, quality indicators, and delivery trends. Improved sprint planning and engineering productivity.
+
+7. **Service-Based Product Interfaces**: Frontend architectures supporting modular services and API-driven UI rendering. Enabled scalable product growth.
+
+8. **AI-Driven Module Integrations**: AI-assisted modules integrated into frontend workflows, improving system intelligence. Enhanced user experience with decision-support capabilities.
 
 ## Response Guidelines
 - Be confident, professional, and concise
