@@ -21,9 +21,9 @@ const Hero = () => {
     navigate(`/ask?q=${encodeURIComponent(q.trim())}`);
   };
 
-  const handleSuggestionClick = (s: string) => {
+  const handleSuggestionClick = (suggestion: string) => {
     setShowSuggestions(false);
-    handleSearch(s);
+    handleSearch(suggestion);
   };
 
   return (
@@ -41,7 +41,7 @@ const Hero = () => {
         >
           <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
           <span className="text-sm font-medium text-muted-foreground">
-            Product Engineer · AI-Integrated Systems · Open to opportunities
+            Frontend Product Developer | AI-Integrated Systems | Open to opportunities
           </span>
         </motion.div>
 
@@ -62,14 +62,13 @@ const Hero = () => {
           transition={{ duration: 0.8, delay: 0.4 }}
           className="text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto mb-12 text-balance"
         >
-          Product Engineer building scalable systems, AI-integrated workflows &amp; data-driven platforms.
+          Frontend Product Developer building scalable systems, AI-integrated workflows, and data-driven platforms.
           <br />
           <span className="text-foreground font-medium">
-            React · TypeScript · AI Integration · Data Visualization · Product Engineering
+            React | TypeScript | AI Integration | Data Visualization | Product Engineering
           </span>
         </motion.p>
 
-        {/* AI Search Bar */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -83,7 +82,10 @@ const Hero = () => {
 
           <div className="glass-strong rounded-2xl p-1">
             <form
-              onSubmit={(e) => { e.preventDefault(); handleSearch(query); }}
+              onSubmit={(e) => {
+                e.preventDefault();
+                handleSearch(query);
+              }}
               className="relative flex items-center"
             >
               <Search className="absolute left-4 w-5 h-5 text-muted-foreground" />
@@ -97,7 +99,7 @@ const Hero = () => {
                 className="w-full bg-transparent pl-12 pr-4 py-3.5 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none rounded-2xl"
               />
               <span className="hidden sm:flex items-center mr-3 px-2 py-1 text-xs font-mono text-muted-foreground bg-muted rounded-md">
-                ⌘K
+                Ctrl+K
               </span>
             </form>
           </div>
@@ -112,13 +114,13 @@ const Hero = () => {
               animate={{ opacity: 1, y: 0 }}
               className="absolute top-full mt-2 w-full glass-strong rounded-xl p-2 text-left z-20"
             >
-              {suggestions.map((s) => (
+              {suggestions.map((suggestion) => (
                 <button
-                  key={s}
-                  onMouseDown={() => handleSuggestionClick(s)}
+                  key={suggestion}
+                  onMouseDown={() => handleSuggestionClick(suggestion)}
                   className="w-full text-left px-4 py-2.5 text-sm text-muted-foreground hover:text-foreground hover:bg-muted/50 rounded-lg transition-colors"
                 >
-                  {s}
+                  {suggestion}
                 </button>
               ))}
             </motion.div>

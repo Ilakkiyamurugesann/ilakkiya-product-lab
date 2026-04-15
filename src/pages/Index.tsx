@@ -1,5 +1,4 @@
 import FloatingNav from "@/components/FloatingNav";
-
 import Hero from "@/components/Hero";
 import About from "@/components/About";
 import Skills from "@/components/Skills";
@@ -14,7 +13,6 @@ import Contact from "@/components/Contact";
 const Index = () => (
   <main className="relative">
     <FloatingNav />
-    
     <Hero />
     <About />
     <Skills />
@@ -26,10 +24,9 @@ const Index = () => (
     <Differentiator />
     <Contact />
 
-    {/* Footer */}
     <footer className="py-8 px-6 text-center border-t border-border/50">
       <p className="text-sm text-muted-foreground font-mono">
-        Designed & Built by Ilakkiya Murugesan · {new Date().getFullYear()}
+        © Ilakkiya Murugesan | Frontend Product Developer
       </p>
     </footer>
   </main>
