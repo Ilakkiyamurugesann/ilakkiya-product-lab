@@ -9,13 +9,25 @@ type Msg = { role: "user" | "assistant"; content: string };
 const CHAT_URL = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/chat`;
 
 const suggestions = [
-  "What are his strengths?",
-  "Explain his project experience",
-  "What makes him different?",
-  "Tell me about his AI integration work",
-  "What's his leadership style?",
-  "What's his tech stack?",
+  "What are her strengths?",
+  "Explain her project experience",
+  "What makes her different?",
+  "Tell me about her AI integration work",
+  "What's her leadership style?",
+  "What's her tech stack?",
 ];
+
+function normalizePortfolioPronouns(content: string) {
+  return content
+    .replace(/\bHe\b/g, "She")
+    .replace(/\bhe\b/g, "she")
+    .replace(/\bHim\b/g, "Her")
+    .replace(/\bhim\b/g, "her")
+    .replace(/\bHis\b/g, "Her")
+    .replace(/\bhis\b/g, "her")
+    .replace(/\bHimself\b/g, "Herself")
+    .replace(/\bhimself\b/g, "herself");
+}
 
 async function streamChat({
   messages,
@@ -106,12 +118,13 @@ const AskMe = () => {
     let assistantSoFar = "";
     const upsert = (chunk: string) => {
       assistantSoFar += chunk;
+      const normalizedContent = normalizePortfolioPronouns(assistantSoFar);
       setMessages((prev) => {
         const last = prev[prev.length - 1];
         if (last?.role === "assistant") {
-          return prev.map((m, i) => (i === prev.length - 1 ? { ...m, content: assistantSoFar } : m));
+          return prev.map((m, i) => (i === prev.length - 1 ? { ...m, content: normalizedContent } : m));
         }
-        return [...prev, { role: "assistant", content: assistantSoFar }];
+        return [...prev, { role: "assistant", content: normalizedContent }];
       });
     };
 

@@ -4,11 +4,11 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const suggestions = [
-  "What are his strengths?",
-  "Explain his project experience",
-  "What makes him different?",
-  "Tell me about his AI integration work",
-  "What's his leadership style?",
+  "What are her strengths?",
+  "Explain her project experience",
+  "What makes her different?",
+  "Tell me about her AI integration work",
+  "What's her leadership style?",
 ];
 
 const Hero = () => {
