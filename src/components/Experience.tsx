@@ -38,7 +38,7 @@ const timeline = [
   },
   {
     color: "bg-yellow-500",
-    role: "Trainee, Product Development (Frontend)",
+    role: "Trainee, Product Development",
     period: "Aug 2023 – Aug 2024",
     points: [
       "Built reusable React modules with API integration",

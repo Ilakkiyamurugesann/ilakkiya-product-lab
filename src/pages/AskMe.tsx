@@ -52,7 +52,14 @@ async function streamChat({
   if (!resp.ok || !resp.body) {
     if (resp.status === 429) { onError("Rate limited, please wait a moment."); return; }
     if (resp.status === 402) { onError("AI credits exhausted."); return; }
-    onError("Something went wrong. Please try again.");
+    let detail = "";
+    try {
+      const data = await resp.json();
+      if (data?.error) detail = String(data.error);
+    } catch {
+      try { detail = await resp.text(); } catch { /* ignore */ }
+    }
+    onError(detail ? `${detail}` : "Something went wrong. Please try again.");
     return;
   }
 

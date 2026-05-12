@@ -41,7 +41,7 @@ const Hero = () => {
         >
           <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
           <span className="text-sm font-medium text-muted-foreground">
-            Frontend Product Developer | AI-Integrated Systems | Open to opportunities
+            Product Engineer | AI-Integrated Systems | Open to opportunities
           </span>
         </motion.div>
 
@@ -62,7 +62,7 @@ const Hero = () => {
           transition={{ duration: 0.8, delay: 0.4 }}
           className="text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto mb-12 text-balance"
         >
-          Frontend Product Developer building scalable systems, AI-integrated workflows, and data-driven platforms.
+          Product Engineer building scalable systems, AI-integrated workflows, and data-driven platforms.
           <br />
           <span className="text-foreground font-medium">
             React | TypeScript | AI Integration | Data Visualization | Product Engineering

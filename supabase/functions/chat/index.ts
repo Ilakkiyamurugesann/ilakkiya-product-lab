@@ -2,6 +2,7 @@ import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
+  "Access-Control-Allow-Methods": "POST, OPTIONS",
   "Access-Control-Allow-Headers":
     "authorization, x-client-info, apikey, content-type, x-supabase-client-platform, x-supabase-client-platform-version, x-supabase-client-runtime, x-supabase-client-runtime-version",
 };
@@ -81,7 +82,7 @@ Product Engineer with strong expertise in React.js, TypeScript, data visualizati
    - Developed reusable utilities and API service layers
    - Improved data-formatting logic for visualization pipelines
 
-4. **Trainee, Product Development (Frontend)** (Aug 2023 - Aug 2024)
+4. **Trainee, Product Development** (Aug 2023 - Aug 2024)
    - Built reusable React modules with API integration
    - Developed data pipelines for dashboards and charts
    - Collaborated in agile sprints, delivering features with high reliability
@@ -128,7 +129,13 @@ serve(async (req) => {
     const { messages } = await req.json();
 
     if (!AI_API_KEY) {
-      throw new Error("AI_API_KEY is not configured");
+      return new Response(
+        JSON.stringify({
+          error:
+            "AI_API_KEY secret is not configured on the Supabase project. Run `supabase secrets set AI_API_KEY=...` or add it in the Supabase dashboard.",
+        }),
+        { status: 503, headers: { ...corsHeaders, "Content-Type": "application/json" } },
+      );
     }
 
     const response = await fetch(AI_API_URL, {
@@ -159,12 +166,13 @@ serve(async (req) => {
         });
       }
 
-      await response.text();
-
-      return new Response(JSON.stringify({ error: "AI provider error" }), {
-        status: 500,
-        headers: { ...corsHeaders, "Content-Type": "application/json" },
-      });
+      const upstreamBody = await response.text();
+      return new Response(
+        JSON.stringify({
+          error: `AI provider error (${response.status}): ${upstreamBody.slice(0, 500)}`,
+        }),
+        { status: response.status, headers: { ...corsHeaders, "Content-Type": "application/json" } },
+      );
     }
 
     return new Response(response.body, {

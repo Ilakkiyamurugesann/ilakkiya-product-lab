@@ -1,6 +1,6 @@
 # Ilakkiya Portfolio
 
-A professional portfolio for Ilakkiya Murugesan, a Frontend Product Developer focused on scalable React applications, product-led user experiences, data-rich interfaces, and AI-integrated workflows.
+A professional portfolio for Ilakkiya Murugesan, a Product Engineer focused on scalable React applications, product-led user experiences, data-rich interfaces, and AI-integrated workflows.
 
 ## Overview
 
